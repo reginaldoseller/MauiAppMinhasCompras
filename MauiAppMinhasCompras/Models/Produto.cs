@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using SQLite;
+﻿using SQLite;
 
 namespace MauiAppMinhasCompras.Models
 {
-    internal class Produto
+    public class Produto
     {
+        // O PrimaryKey e AutoIncrement vêm do SWLite - são anotations
         [PrimaryKey, AutoIncrement]
         public int id { get; set; }
-        public string Descricao { get; set; }
+        public string? Descricao { get; set; }
         public double Quantidade { get; set; }
         public double Preco { get; set; }
     }
