@@ -2,11 +2,77 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppMinhasCompras.Views.ListaProduto"
-             Title="ListaProduto">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="Minhas Compras"
+             BackgroundColor="#FAF8F5">
+    <!-- Fundo suave creme/ocre -->
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+" Clicked="ToolbarItem_Clicked" />
+    </ContentPage.ToolbarItems>
+
+    <Grid RowDefinitions="Auto, *" Padding="15" RowSpacing="12">
+
+        <!-- Botão de Adicionar no topo/início da tela -->
+        <Button Grid.Row="0"
+                Text="+ Adicionar Novo Produto"
+                Clicked="ToolbarItem_Clicked"
+                BackgroundColor="#E2D4C3" 
+                TextColor="#3E362E"
+                FontAttributes="Bold"
+                CornerRadius="10"
+                HeightRequest="45" />
+
+        <!-- Lista de Produtos -->
+        <CollectionView x:Name="cvProdutos" Grid.Row="1">
+
+            <CollectionView.EmptyView>
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10">
+                    <Label Text="Nenhum produto cadastrado." 
+                           FontSize="16" 
+                           TextColor="#8A817C" 
+                           HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <!-- Card para cada item -->
+                    <Frame Margin="0,5" 
+                           Padding="12" 
+                           CornerRadius="10" 
+                           BackgroundColor="#FFFDF9" 
+                           BorderColor="#E6DDD4" 
+                           HasShadow="True">
+
+                        <Grid ColumnDefinitions="*, Auto, Auto" ColumnSpacing="12">
+                            <!-- Descrição -->
+                            <Label Grid.Column="0" 
+                                   Text="{Binding Descricao}" 
+                                   FontSize="16" 
+                                   FontAttributes="Bold" 
+                                   TextColor="#2B2621" 
+                                   VerticalOptions="Center" />
+
+                            <!-- Quantidade -->
+                            <Label Grid.Column="1" 
+                                   Text="{Binding Quantidade, StringFormat='Qtd: {0}'}" 
+                                   FontSize="14" 
+                                   TextColor="#6C645D" 
+                                   VerticalOptions="Center" />
+
+                            <!-- Preço Unitário -->
+                            <Label Grid.Column="2" 
+                                   Text="{Binding Preco, StringFormat='R$ {0:F2}'}" 
+                                   FontSize="15" 
+                                   FontAttributes="Bold" 
+                                   TextColor="#2D6A4F" 
+                                   VerticalOptions="Center" />
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+    </Grid>
+
 </ContentPage>

@@ -1,9 +1,29 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using MauiAppMinhasCompras.Helpers;
+using Microsoft.Extensions.DependencyInjection;
+using SQLite;
 
 namespace MauiAppMinhasCompras
 {
     public partial class App : Application
     {
+        static SQLiteDatabaseHelper _db;
+        public static SQLiteDatabaseHelper DB
+        {
+            get
+            {
+                if(_db == null)
+                {
+                    string path = Path.Combine(
+                        Environment.GetFolderPath(
+                            Environment.SpecialFolder.LocalApplicationData),
+                        "banco_sqlite_compraas.db3");
+  
+                    _db = new SQLiteDatabaseHelper(path);
+                }
+
+                return _db;
+            }
+        }
         public App()
         {
             InitializeComponent();
