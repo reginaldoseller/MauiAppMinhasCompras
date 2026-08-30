@@ -9,6 +9,8 @@ public partial class NovoProduto : ContentPage
 		InitializeComponent();
 	}
 
+
+	// método para enviar para o bando os dados do formulário ao clicar
     private async void ToolbarItem_Clicked(object sender, EventArgs e)
     {
 		try
